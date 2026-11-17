@@ -2,8 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import { guardarContacto } from '../actions/contactoAction';
+import { useRouter } from 'next/navigation';
+import { createClient } from '../lib/supabase';
+
 
 export default function ContactoPage() {
+      const router = useRouter();
+
+   useEffect(() => {
+      const supabase = createClient();
+      supabase.auth.getUser().then(({ data: { user } }) => {
+         if (!user) router.push('/login');
+      });
+   }, []);
    const [nombre, setNombre] = useState('')
    const [correo, setCorreo] = useState('')
    const [telefono, setTelefono] = useState('')

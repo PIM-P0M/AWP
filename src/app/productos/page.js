@@ -1,5 +1,6 @@
 import TarjetaProducto from "../componentes/tarjetaProducto";
 import {createClient} from '../lib/supServer';
+import { verificarUsuario } from '../lib/verificarUsuario';
 /*
 //const PRODUCTOS = [
    { id: 1, nombre: "Mouse", precio: 150, descripcion:'Mouse gamer', imagen: "/mouse.jpg"},
@@ -26,6 +27,7 @@ return productos;
 }
 
 export default async function ProductosPage() {
+      await verificarUsuario();
    const productos = await getProductos();
    return (
       <section>
